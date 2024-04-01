@@ -1,4 +1,4 @@
-import { Body, Controller, Get, HttpException, HttpStatus, Param, Post, Req } from '@nestjs/common';
+import { Body, Controller, Get, HttpException, HttpStatus, Param, Patch, Post } from '@nestjs/common';
 import { User } from './user.model';
 import { UserService } from './user.service'
 
@@ -28,5 +28,12 @@ export class UserController {
             throw new HttpException(error.message, HttpStatus.BAD_REQUEST);
         }
 
+    }
+
+    @Patch(':userId')
+    async upDate(@Body() reqBody: User, @Param('userId') userId: string) {
+        console.log( userId)
+        const result = this.userService.updateUser(userId, reqBody)
+        return result
     }
 }

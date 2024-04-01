@@ -25,4 +25,10 @@ export class UserService {
         return result
     }
 
+
+    async updateUser(id: string,data :User){
+
+        const result = await this.userModel.findByIdAndUpdate(id,data)
+        return result
+    }
 }
