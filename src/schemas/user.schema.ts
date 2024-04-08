@@ -1,5 +1,5 @@
 // import * as mongoose from 'mongoose'
-import { Contains, IsDate, IsEmail, IsFQDN, IsString, Min, MinLength } from 'class-validator'
+// import { Contains, IsDate, IsEmail, IsFQDN, IsString, Min, MinLength } from 'class-validator'
 import { ApiProperty, PickType } from '@nestjs/swagger';
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 
@@ -12,7 +12,7 @@ export enum GENDER {
     OTHER = 'OTHER'
 }
 
-@Schema({ timestamps: true })
+@Schema()
 export class User {
 
     @Prop({ required: true, })

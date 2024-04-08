@@ -3,7 +3,7 @@ import { UserService } from './user.service'
 import { ValidationError, isArray, validateOrReject } from 'class-validator';
 import { ApiBody, ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { UpdateUserDto } from './dto/update-user.dto';
-import { User } from 'src/schemas/user.model';
+import { User } from 'src/schemas/user.schema';
 
 
 @ApiTags('user')
