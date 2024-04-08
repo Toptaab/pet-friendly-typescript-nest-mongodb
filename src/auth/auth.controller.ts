@@ -3,14 +3,14 @@ import { AuthService } from './auth.service';
 import { ApiCreatedResponse, ApiOkResponse, ApiTags } from '@nestjs/swagger';
 import { ValidationError, isArray, validateOrReject } from 'class-validator';
 import { RegisterDto } from './dto/register.dto';
-import { User } from 'src/schemas/user.model';
+import { JwtDto } from './dto/jwt.dto';
 
 
 
 @ApiTags('auth')
 @Controller('auth')
 export class AuthController {
-  constructor(private readonly authService: AuthService) {}
+  constructor(private readonly authService: AuthService  ) {}
 
 
   @Get(':id')
@@ -23,9 +23,9 @@ export class AuthController {
   @Post('register')
   @ApiCreatedResponse({
     description: 'The user has been successfully created.',
-    type: User,
+    type: JwtDto,
   })
-  async addUser(@Body() reqBody: RegisterDto) {
+  async addUser(@Body() reqBody: RegisterDto): Promise<JwtDto> {
       try {
           const newUser = new RegisterDto
           for (const key in reqBody) {
@@ -33,9 +33,10 @@ export class AuthController {
           }
           console.log("req", reqBody)
           await validateOrReject(newUser)
-          const user = await this.authService.create(newUser)
-          return {user}
-          
+          const accessToken = await this.authService.create(newUser)
+
+          return accessToken
+      
       } catch (error) {
           console.log(error)
           if (isArray(error) && error[0] instanceof ValidationError) {
