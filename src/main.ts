@@ -12,6 +12,7 @@ async function bootstrap() {
   .setTitle('Pet Friendly API')
   .setDescription('Pet Friendly API Documentation')
   .setVersion('V.0.0.1')
+  .addBearerAuth()
   .build()
 
   const document = SwaggerModule.createDocument(app, config);

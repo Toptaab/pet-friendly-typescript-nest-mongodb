@@ -16,15 +16,12 @@ export enum GENDER {
 export class User {
 
     @Prop({ required: true, })
-    @ApiProperty()
     userName: string
 
     @Prop({ required: true, })
-    @ApiProperty()
     email: string
 
-    @Prop({ required: true, })
-    @ApiProperty()
+    @Prop({ required: true, select: false})
     password: string
 
     @Prop()
@@ -39,7 +36,7 @@ export class User {
     @Prop()
     about: string
 
-    @Prop()
+    @Prop({select: false})
     lineIdToken: string
 
     @Prop()
