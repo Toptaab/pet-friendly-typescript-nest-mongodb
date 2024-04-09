@@ -14,17 +14,14 @@ export class AuthService {
 
   async create(user: RegisterDto): Promise<JwtDto> {
     const res = await this.UserModel.create(user)
-
     const accessToken = this.jwtService.sign({id: res.id })
 
     return accessToken
   }
 
 
-
-
-  findOne(id: number) {
-    return `This action returns a #${id} auth`;
+  async findOne( id: string) : Promise<AuthService>{
+    return await this.UserModel.findById(id)
   }
 
 }
